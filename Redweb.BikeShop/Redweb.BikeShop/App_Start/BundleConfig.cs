@@ -10,17 +10,17 @@ namespace Redweb.BikeShop
                                 "~/Scripts/jquery-{version}.js"));
 
             bundleCollection.Add(new ScriptBundle("~/bundles/jqueryval").Include(
-                                "~/Scripts/jquery.validate"));
-
+                                "~/Scripts/jquery.validate*"));
+            
             bundleCollection.Add(new ScriptBundle("~/bundles/modernizr").Include(
                                 "~/Scripts/modernizr-*"));
 
             bundleCollection.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                                "~/Scripts/bootstrap-paper.js",
+                                "~/Scripts/bootstrap.js",
                                 "~/Scripts/respond.js"));
 
-            bundleCollection.Add(new ScriptBundle("~/bundles/css").Include(
-                                "~/Content/bootstrap.css",
+            bundleCollection.Add(new StyleBundle("~/Content/css").Include(
+                                "~/Content/bootstrap-paper.css",
                                 "~/Content/site.css"));
         }
     }

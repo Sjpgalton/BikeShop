@@ -15,10 +15,10 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace Redweb.BikeShop.DependencyResolution {
-    using StructureMap.Configuration.DSL;
-    using StructureMap.Graph;
-	
+namespace Redweb.BikeShop.DependencyResolution
+{
+    using StructureMap;
+
     public class DefaultRegistry : Registry {
         #region Constructors and Destructors
 
