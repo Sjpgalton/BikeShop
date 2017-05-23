@@ -16,7 +16,7 @@ namespace Redweb.BikeShop
                                 "~/Scripts/modernizr-*"));
 
             bundleCollection.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                                "~/Scripts/bootstrap.js",
+                                "~/Scripts/bootstrap-paper.js",
                                 "~/Scripts/respond.js"));
 
             bundleCollection.Add(new ScriptBundle("~/bundles/css").Include(
