@@ -236,13 +236,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201705231433357_InitialModel.cs" />
-    <Compile Include="Migrations\201705231433357_InitialModel.Designer.cs">
-      <DependentUpon>201705231433357_InitialModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201705240930177_AddedDatabaseModels.cs" />
-    <Compile Include="Migrations\201705240930177_AddedDatabaseModels.Designer.cs">
-      <DependentUpon>201705240930177_AddedDatabaseModels.cs</DependentUpon>
+    <Compile Include="Migrations\201705241352417_InitialSetup.cs" />
+    <Compile Include="Migrations\201705241352417_InitialSetup.Designer.cs">
+      <DependentUpon>201705241352417_InitialSetup.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Startup.cs" />
@@ -327,11 +323,8 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201705231433357_InitialModel.resx">
-      <DependentUpon>201705231433357_InitialModel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705240930177_AddedDatabaseModels.resx">
-      <DependentUpon>201705240930177_AddedDatabaseModels.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201705241352417_InitialSetup.resx">
+      <DependentUpon>201705241352417_InitialSetup.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
