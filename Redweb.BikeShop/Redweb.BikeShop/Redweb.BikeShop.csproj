@@ -210,6 +210,12 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Core\Models\ApplicationDbContext.cs" />
     <Compile Include="Core\Models\ApplicationUser.cs" />
+    <Compile Include="Core\Models\Category.cs" />
+    <Compile Include="Core\Models\Colour.cs" />
+    <Compile Include="Core\Models\Model.cs" />
+    <Compile Include="Core\Models\Product.cs" />
+    <Compile Include="Core\Models\Size.cs" />
+    <Compile Include="Core\Models\Subcategory.cs" />
     <Compile Include="Core\ViewModels\Account\ExternalLoginConfirmationViewModel.cs" />
     <Compile Include="Core\ViewModels\Account\ExternalLoginListViewModel.cs" />
     <Compile Include="Core\ViewModels\Account\ForgotPasswordViewModel.cs" />
@@ -233,6 +239,10 @@
     <Compile Include="Migrations\201705231433357_InitialModel.cs" />
     <Compile Include="Migrations\201705231433357_InitialModel.Designer.cs">
       <DependentUpon>201705231433357_InitialModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705240930177_AddedDatabaseModels.cs" />
+    <Compile Include="Migrations\201705240930177_AddedDatabaseModels.Designer.cs">
+      <DependentUpon>201705240930177_AddedDatabaseModels.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Startup.cs" />
@@ -319,6 +329,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201705231433357_InitialModel.resx">
       <DependentUpon>201705231433357_InitialModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705240930177_AddedDatabaseModels.resx">
+      <DependentUpon>201705240930177_AddedDatabaseModels.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
