@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Redweb.BikeShop", "Redweb.BikeShop\Redweb.BikeShop.csproj", "{29E1B979-1512-4C5F-873F-B77E96F77560}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Redweb.BikeShop.Tests", "Redweb.BikeShop.Tests\Redweb.BikeShop.Tests.csproj", "{F3D8D695-ADE0-47CA-B753-8EE7CA980255}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{29E1B979-1512-4C5F-873F-B77E96F77560}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29E1B979-1512-4C5F-873F-B77E96F77560}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29E1B979-1512-4C5F-873F-B77E96F77560}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29E1B979-1512-4C5F-873F-B77E96F77560}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3D8D695-ADE0-47CA-B753-8EE7CA980255}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3D8D695-ADE0-47CA-B753-8EE7CA980255}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3D8D695-ADE0-47CA-B753-8EE7CA980255}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3D8D695-ADE0-47CA-B753-8EE7CA980255}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
