@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNet.Identity.EntityFramework;
-using System.Data.Entity;
+﻿using System.Data.Entity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Redweb.BikeShop.Core;
+using Redweb.BikeShop.Core.Models;
 
-namespace Redweb.BikeShop.Core.Models
+namespace Redweb.BikeShop.Persistance
 {
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IApplicationDbContext
     {
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
