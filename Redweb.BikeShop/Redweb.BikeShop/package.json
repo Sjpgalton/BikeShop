@@ -1,0 +1,9 @@
+{
+  "name": "BikeSite",
+  "version": "1.0.0",
+  "description": "Project Description",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-sass": "^3.1.0"
+  }
+}

@@ -7,6 +7,7 @@ using Redweb.BikeShop.Core.Models;
 using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Redweb.BikeShop.Persistance;
 
 namespace Redweb.BikeShop
 {

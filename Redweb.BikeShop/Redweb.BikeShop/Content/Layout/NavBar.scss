@@ -1,0 +1,14 @@
+﻿@import "../Styles/Colours.scss";
+
+.navbar-inverse {
+    background-color: $navbar_blue;
+    border-color: $navbar_blue;
+
+    .navbar-brand {
+	    color: $navbar_text;
+	}
+}
+
+.navbar-brand{
+    font-weight: 700;
+}
