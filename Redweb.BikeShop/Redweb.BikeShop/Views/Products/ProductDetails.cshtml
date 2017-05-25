@@ -1,0 +1,44 @@
+﻿@model Redweb.BikeShop.Core.ViewModels.ProductDetailViewModel
+@{
+    ViewBag.Title = @Model.ProductDetail.Name;
+}
+
+<ul class="breadcrumb voffset5">
+    <li>
+        <a href="@Url.Action("Index", "Home")">
+            Home
+        </a>
+    </li>
+    <li>
+        <a href="@Url.Action("AllProducts", "Products")">
+            All Products
+        </a>
+    </li>
+    <li class="active">@Model.ProductDetail.Name</li>
+</ul>
+<ul class="productDetails voffset3">
+    <h3>@Model.ProductDetail.Name</h3>
+    <img src="http://www.poorguytactical.com/home/Portals/0/CVStoreImages/default_product_image_400.jpg" class="centerImage">
+    <div class="panel panel-primary voffset3">
+        <div class="panel-heading">
+            <h3 class="panel-title">Product Details</h3>
+        </div>
+        <div class="panel-body">
+            <p>Product Code: @Model.ProductDetail.Code</p>
+            <p>Category: @Model.ProductDetail.Category.Name</p>
+            <p>Subcategory: @Model.ProductDetail.Subcategory.Name</p>
+            <p>Model: @Model.ProductDetail.Model.Name</p>
+            <p>Price: @Model.ProductDetail.Price</p>
+            <p>Colour: @Model.ColourText</p>
+            <p>Size: @Model.SizeText</p>
+        </div>
+    </div>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">Product Description</h3>
+        </div>
+        <div class="panel-body">
+            @Model.ProductDetail.Description
+        </div>
+    </div>
+</ul>
