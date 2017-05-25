@@ -2,9 +2,17 @@
 @{
     ViewBag.Title = "All Products";
 }
+<ul class="breadcrumb voffset5">
+    <li>
+        <a href="@Url.Action("Index", "Home")">
+            Home
+        </a>
+    </li>
+    <li class="active">All Products</li>
+</ul>
 <body>
-<h2>All Products</h2>
-    <table class="table table-striped table-hover voffset5">
+<h3>All Products</h3>
+    <table class="table table-striped table-hover voffset3">
         <tr>
             <th>Product Code</th>
             <th>Product Name</th>

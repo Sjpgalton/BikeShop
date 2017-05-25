@@ -27,7 +27,7 @@ namespace Redweb.BikeShop.Controllers
         /// <summary>
         /// Gets the Product details.
         /// </summary>
-        /// <param name="productId">The product identifier.</param>
+        /// <param name="id">The identifier.</param>
         /// <returns>ViewResult.</returns>
         public ActionResult ProductDetails(int id)
         {
@@ -44,6 +44,18 @@ namespace Redweb.BikeShop.Controllers
             };
 
             return View(viewModel);
+        }
+
+        [Authorize]
+        public ActionResult Create()
+        {
+            var viewModel = new AddProductViewModel
+            {
+                Genres = _genreRepository.GetAllGenres(),
+                Heading = "Add a Gig"
+            };
+
+            return View("GigForm", viewModel);
         }
     }
 }
