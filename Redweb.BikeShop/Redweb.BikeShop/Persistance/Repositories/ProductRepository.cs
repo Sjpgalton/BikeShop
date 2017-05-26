@@ -62,9 +62,33 @@ namespace Redweb.BikeShop.Persistance.Repositories
             _context.Products.Add(entityProduct);
         }
 
+        public void UpdateProduct(int existingProductId, ProductModel updatedProduct)
+        {
+            var existingItem = GetSingleDatabaseItem(existingProductId);
+            Mapper.Map(updatedProduct, existingItem);
+            Complete();
+        }
+
+        public void DeleteProduct(int id)
+        {
+            var product = GetSingleDatabaseItem(id);
+            _context.Products.Remove(product);
+        }
+
         public void Complete()
         {
             _context.SaveChanges();
+        }
+
+        private Product GetSingleDatabaseItem(int id)
+        {
+            return _context.Products
+                .Include(product => product.Category)
+                .Include(product => product.Subcategory)
+                .Include(product => product.Model)
+                .Include(product => product.Colour)
+                .Include(product => product.Size)
+                .SingleOrDefault(product => product.Id == id);
         }
     }
 }

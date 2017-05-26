@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Redweb.BikeShop.Core.Models.ProductModel>
+﻿@model Redweb.BikeShop.Core.ViewModels.AllProductsViewModel
 @{
     ViewBag.Title = "All Products";
 }
@@ -12,43 +12,90 @@
 </ul>
 <body>
 <h3>All Products</h3>
-    <table class="table table-striped table-hover voffset3">
-        <tr>
-            <th>Product Code</th>
-            <th>Product Name</th>
-            <th>Category</th>
-            <th>Subcategory</th>
-            <th>Model</th>
-            <th>Price (£)</th>
-            <th>Colour</th>
-            <th>Size</th>
-        </tr>
-        @foreach (var product in Model)
+<table class="table table-striped table-hover voffset3">
+    <tr>
+        <th>Product Code</th>
+        <th>Product Name</th>
+        <th>Category</th>
+        <th>Subcategory</th>
+        <th>Model</th>
+        <th>Price (£)</th>
+        @if (Model.ShowActions)
         {
-            <tr>
-                <th>@product.Code</th>
+            <th colspan="2">Actions</th>
+        }
+    </tr>
+    @foreach (var product in Model.AllProducts)
+    {
+        <tr>
+            <th>@product.Code</th>
+            <th>
+                <a href="@Url.Action("ProductDetails", "Products", new { id = product.Id })">
+                    @product.Name
+                </a>
+            </th>
+            <th>@product.Category.Name</th>
+            <th>@product.Subcategory.Name</th>
+            <th>@product.Model.Name</th>
+            <th>£@product.Price</th>
+            @if (Model.ShowActions)
+            {
                 <th>
-                    <a href="@Url.Action("ProductDetails", "Products", new { id = product.Id })">
-                        @product.Name
+                    <a href="@Url.Action("EditDetails", "Products", new {id = product.Id})">
+                        Edit Product
                     </a>
                 </th>
-                <th>@product.Category.Name</th>
-                <th>@product.Subcategory.Name</th>
-                <th>@product.Model.Name</th>
-                <th>£@product.Price</th>
                 <th>
-                    @if (product.Colour != null)
-                    {
-                        @product.Colour.Name
-                    }
+                    <a href="#" class="js-delete-product" data-product-id="@product.Id">
+                        Delete Product
+                    </a>
                 </th>
-                <th>
-                    @if (product.Size != null)
-                    {
-                        @product.Size.Name
-                    }
-                </th>
-            </tr>
-        }
-    </table>
+            }
+        </tr>
+    }
+</table>
 </body>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+            $(".js-delete-product").click(function(e) {
+                var link = $(e.target);
+
+                bootbox.dialog({
+                    message: "Are you sure you would like to delete this product?",
+                    title: "Confirm",
+                    buttons: {
+                        no: {
+                            label: "No",
+                            classname: "btn-default",
+                            callback: function() {
+                                bootbox.hideAll();
+                            }
+                        },
+                        yes: {
+                            label: "Yes",
+                            classname: "btn-danger",
+                            callback: function() {
+                                $.ajax({
+                                        url: "/api/products/" + link.attr("data-product-id"),
+                                        method: "DELETE"
+                                    })
+                                    .done(function() {
+                                        link.parents("tr").fadeOut(function() {
+                                            $(this).remove();
+                                        });
+                                    })
+                                    .fail(function() {
+                                        alert("Error deleting product");
+                                    });
+
+                            }
+                        }
+                    }
+                });
+            });
+        })
+    </script>
+}

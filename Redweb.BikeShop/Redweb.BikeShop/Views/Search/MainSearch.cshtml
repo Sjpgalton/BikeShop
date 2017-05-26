@@ -1,0 +1,24 @@
+﻿@model Redweb.BikeShop.Core.ViewModels.AllProductsViewModel
+@{
+    ViewBag.Title = "Main Search";
+}
+
+<ul class="breadcrumb voffset5">
+    <li>
+        <a href="@Url.Action("Index", "Home")">
+            Home
+        </a>
+    </li>
+    <li class="active">Main Search</li>
+</ul>
+<body>
+<h3>Search Products</h3>
+@using (Html.BeginForm("MainSearch", "Search"))
+{
+    <div>
+        <div id="searchProducts">
+            @Html.TextBoxFor(m => m.SearchTerm, new { style = "width:2000px;", placeholder = "Search for products"})
+        </div>
+    </div>
+}
+</body>

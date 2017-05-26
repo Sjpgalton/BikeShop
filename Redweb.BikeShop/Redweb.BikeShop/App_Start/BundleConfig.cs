@@ -19,6 +19,9 @@ namespace Redweb.BikeShop
                                 "~/Scripts/bootstrap.js",
                                 "~/Scripts/respond.js"));
 
+            bundleCollection.Add(new ScriptBundle("~/bundles/bootbox").Include(
+                                "~/Scripts/bootbox.min.js"));
+
             bundleCollection.Add(new StyleBundle("~/Content/css").Include(
                                 "~/Content/bootstrap-paper.css",
                                 "~/Content/site.css"));
