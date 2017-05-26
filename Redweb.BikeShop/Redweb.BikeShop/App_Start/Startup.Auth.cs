@@ -4,7 +4,7 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Owin;
 using System;
-using Redweb.BikeShop.Core.Models;
+using Redweb.BikeShop.Core.Models.DatabaseModels;
 using Redweb.BikeShop.Persistance;
 using static Redweb.BikeShop.IdentityConfig;
 

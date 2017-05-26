@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Redweb.BikeShop.Core.Models
+namespace Redweb.BikeShop.Core.Models.DatabaseModels
 {
     public class Category
     {

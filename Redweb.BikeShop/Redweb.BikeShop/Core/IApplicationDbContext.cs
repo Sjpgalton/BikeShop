@@ -1,5 +1,5 @@
 ﻿using System.Data.Entity;
-using Redweb.BikeShop.Core.Models;
+using Redweb.BikeShop.Core.Models.DatabaseModels;
 
 namespace Redweb.BikeShop.Core
 {

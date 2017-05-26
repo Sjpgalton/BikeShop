@@ -205,20 +205,33 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\MappingProfile.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Core\Models\CategoryModel.cs" />
+    <Compile Include="Core\Models\ProductModelModel.cs" />
+    <Compile Include="Core\Models\ProductModel.cs" />
+    <Compile Include="Core\Models\SubcategoryModel.cs" />
+    <Compile Include="Core\Repositories\ICategoriesRepository.cs" />
+    <Compile Include="Core\Repositories\IColourRepository.cs" />
+    <Compile Include="Core\Repositories\IModelRepository.cs" />
     <Compile Include="Core\Repositories\IProductRepository.cs" />
+    <Compile Include="Core\Repositories\ISizeRepository.cs" />
+    <Compile Include="Core\Repositories\ISubcategoriesRepository.cs" />
+    <Compile Include="Core\ViewModels\AddProductViewModel.cs" />
+    <Compile Include="Core\Models\ColourModel.cs" />
     <Compile Include="Core\ViewModels\ProductDetailViewModel.cs" />
+    <Compile Include="Core\Models\SizeModel.cs" />
     <Compile Include="Persistance\ApplicationDbContext.cs" />
-    <Compile Include="Core\Models\ApplicationUser.cs" />
-    <Compile Include="Core\Models\Category.cs" />
-    <Compile Include="Core\Models\Colour.cs" />
-    <Compile Include="Core\Models\Model.cs" />
-    <Compile Include="Core\Models\Product.cs" />
-    <Compile Include="Core\Models\Size.cs" />
-    <Compile Include="Core\Models\Subcategory.cs" />
+    <Compile Include="Core\Models\DatabaseModels\ApplicationUser.cs" />
+    <Compile Include="Core\Models\DatabaseModels\Category.cs" />
+    <Compile Include="Core\Models\DatabaseModels\Colour.cs" />
+    <Compile Include="Core\Models\DatabaseModels\Model.cs" />
+    <Compile Include="Core\Models\DatabaseModels\Product.cs" />
+    <Compile Include="Core\Models\DatabaseModels\Size.cs" />
+    <Compile Include="Core\Models\DatabaseModels\Subcategory.cs" />
     <Compile Include="Core\ViewModels\Account\ExternalLoginConfirmationViewModel.cs" />
     <Compile Include="Core\ViewModels\Account\ExternalLoginListViewModel.cs" />
     <Compile Include="Core\ViewModels\Account\ForgotPasswordViewModel.cs" />
@@ -245,7 +258,12 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Core\IApplicationDbContext.cs" />
+    <Compile Include="Persistance\Repositories\CategoriesRepository.cs" />
+    <Compile Include="Persistance\Repositories\ColourRepository.cs" />
+    <Compile Include="Persistance\Repositories\ModelRepository.cs" />
     <Compile Include="Persistance\Repositories\ProductRepository.cs" />
+    <Compile Include="Persistance\Repositories\SizeRepository.cs" />
+    <Compile Include="Persistance\Repositories\SubcategoriesRepository.cs" />
     <Compile Include="Startup.cs" />
     <Content Include="Content\bootstrap-paper.css" />
     <Content Include="Content\bootstrap.css" />
@@ -268,6 +286,7 @@
     <Content Include="package.json" />
     <Content Include="Content\Layout\Body.scss" />
     <Content Include="Content\Styles\Values.scss" />
+    <Content Include="Content\Layout\FormLayout.scss" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -301,6 +320,7 @@
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Products\AllProducts.cshtml" />
     <Content Include="Views\Products\ProductDetails.cshtml" />
+    <Content Include="Views\Products\ProductForm.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

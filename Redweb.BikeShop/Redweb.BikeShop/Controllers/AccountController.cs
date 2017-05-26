@@ -7,7 +7,7 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using Redweb.BikeShop.Core.Models;
+using Redweb.BikeShop.Core.Models.DatabaseModels;
 using Redweb.BikeShop.Core.ViewModels.Account;
 
 namespace Redweb.BikeShop.Controllers
