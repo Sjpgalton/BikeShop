@@ -1,4 +1,5 @@
-﻿@model Redweb.BikeShop.Core.ViewModels.AllProductsViewModel
+﻿@model Redweb.BikeShop.Core.ViewModels.SearchProductsViewModel
+@using PagedList.Mvc
 @{
     ViewBag.Title = "Main Search";
 }
@@ -12,13 +13,115 @@
     <li class="active">Main Search</li>
 </ul>
 <body>
-<h3>Search Products</h3>
-@using (Html.BeginForm("MainSearch", "Search"))
-{
-    <div>
-        <div id="searchProducts">
-            @Html.TextBoxFor(m => m.SearchTerm, new { style = "width:2000px;", placeholder = "Search for products"})
+    <h3>Search Products</h3>
+    @using (Html.BeginForm("Search", "Search"))
+    {
+        <div class="searchfilters">
+            <div id="searchProducts" class="searchbar">
+                @Html.TextBoxFor(m => m.SearchTerm, new { style = "width:2000px;", placeholder = "Search for products" })
+                <button type="submit" class="btn btn-primary btn-lg">Search</button>
+            </div>
+            <div class="sortingwrapper">
+                @Html.Label("Sort By")
+                @Html.DropDownListFor(m => m.SortType, new SelectList(Model.SortTypes), "", new { @class = "form-control", onchange= "this.form.submit();" })
+            </div>
         </div>
-    </div>
-}
+        <p align="right">Page @(Model.NumberOfPages < Model.PageNumber ? 0 : Model.PageNumber) of @Model.NumberOfPages</p>
+    }
+    <table class="table table-striped table-hover voffset4">
+        <tr>
+            <th>Product Code</th>
+            <th>Product Name</th>
+            <th>Category</th>
+            <th>Subcategory</th>
+            <th>Model</th>
+            <th>Price (£)</th>
+            @if (Model.ShowActions)
+            {
+                <th colspan="2">Actions</th>
+            }
+        </tr>
+        @foreach (var product in Model.AllProducts)
+        {
+            <tr>
+                <th>@product.Code</th>
+                <th>
+                    <a href="@Url.Action("ProductDetails", "Products", new {id = product.Id})">
+                        @product.Name
+                    </a>
+                </th>
+                <th>@product.Category.Name</th>
+                <th>@product.Subcategory.Name</th>
+                <th>@product.Model.Name</th>
+                <th>£@product.Price</th>
+                @if (Model.ShowActions)
+                {
+                    <th>
+                        <a href="@Url.Action("EditDetails", "Products", new {id = product.Id})">
+                            Edit Product
+                        </a>
+                    </th>
+                    <th>
+                        <a href="#" class="js-delete-product" data-product-id="@product.Id">
+                            Delete Product
+                        </a>
+                    </th>
+                }
+            </tr>
+        }
+    </table>
 </body>
+<p align="left">
+    @Html.PagedListPager(Model.AllProducts, page => Url.Action("MainSearch", new { page }))
+</p>
+
+
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+            $(".js-delete-product").click(function(e) {
+                var link = $(e.target);
+
+                bootbox.dialog({
+                    message: "Are you sure you would like to delete this product?",
+                    title: "Confirm",
+                    buttons: {
+                        no: {
+                            label: "No",
+                            classname: "btn-default",
+                            callback: function() {
+                                bootbox.hideAll();
+                            }
+                        },
+                        yes: {
+                            label: "Yes",
+                            classname: "btn-danger",
+                            callback: function() {
+                                $.ajax({
+                                        url: "/api/products/" + link.attr("data-product-id"),
+                                        method: "DELETE"
+                                    })
+                                    .done(function() {
+                                        link.parents("tr").fadeOut(function() {
+                                            $(this).remove();
+                                        });
+                                    })
+                                    .fail(function() {
+                                        alert("Error deleting product");
+                                    });
+
+                            }
+                        }
+                    }
+                });
+            });
+        })
+
+        $(function () {
+            $('#submit').change(function () {
+                this.form.submit();
+            });
+        });
+    </script>
+}

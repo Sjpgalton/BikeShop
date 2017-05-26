@@ -25,7 +25,7 @@
             <th colspan="2">Actions</th>
         }
     </tr>
-    @foreach (var product in Model.AllProducts)
+    @foreach (var product in Model.AllProducts.ToList())
     {
         <tr>
             <th>@product.Code</th>

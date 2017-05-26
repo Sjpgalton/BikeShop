@@ -3,6 +3,8 @@ using Redweb.BikeShop.Core;
 using Redweb.BikeShop.Core.Models;
 using Redweb.BikeShop.Core.Models.DatabaseModels;
 using Redweb.BikeShop.Core.Repositories;
+using Redweb.BikeShop.Core.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -33,6 +35,37 @@ namespace Redweb.BikeShop.Persistance.Repositories
                 .Include(product => product.Size)
                 .OrderBy(product => product.Id)
                 .ToList();
+
+            return allProducts.Select(Mapper.Map<Product, ProductModel>);
+        }
+
+        public IEnumerable<ProductModel> SearchAllProducts(string query = null, SearchSortTypes sortType = SearchSortTypes.Default)
+        {
+            var allProducts = _context.Products
+                .Include(product => product.Category)
+                .Include(product => product.Subcategory)
+                .Include(product => product.Model)
+                .Include(product => product.Colour)
+                .Include(product => product.Size)
+                .OrderBy(product => product.Id)
+                .ToList();
+
+            if (!String.IsNullOrWhiteSpace(query))
+            {
+                allProducts = allProducts
+                    .Where(product =>
+                        product.Category.Name.Contains(query) ||
+                        product.Subcategory.Name.Contains(query) ||
+                        product.Model.Name.Contains(query) ||
+                        product.Name.Contains(query) ||
+                        product.Code.Contains(query))
+                        .ToList();
+            }
+
+            if (sortType != SearchSortTypes.Default)
+            {
+                allProducts = SortedProductList(allProducts, sortType);
+            }
 
             return allProducts.Select(Mapper.Map<Product, ProductModel>);
         }
@@ -89,6 +122,26 @@ namespace Redweb.BikeShop.Persistance.Repositories
                 .Include(product => product.Colour)
                 .Include(product => product.Size)
                 .SingleOrDefault(product => product.Id == id);
+        }
+
+        private static List<Product> SortedProductList(List<Product> allProducts, SearchSortTypes sortType)
+        {
+            switch (sortType)
+            {
+                case SearchSortTypes.Category:
+                    return allProducts.OrderBy(product => product.Category.Name).ToList();
+                case SearchSortTypes.Code:
+                    return allProducts.OrderBy(product => product.Code).ToList();
+                case SearchSortTypes.Model:
+                    return allProducts.OrderBy(product => product.Model.Name).ToList();
+                case SearchSortTypes.Name:
+                    return allProducts.OrderBy(product => product.Name).ToList();
+                case SearchSortTypes.Subcategory:
+                    return allProducts.OrderBy(product => product.Subcategory.Name).ToList();
+                default:
+                    return allProducts;
+            }
+
         }
     }
 }
