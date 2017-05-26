@@ -34,7 +34,13 @@ namespace Redweb.BikeShop.Controllers
         {
             var allProducts = _productRepository.GetAllProducts();
 
-            return View(allProducts);
+            var viewModel = new AllProductsViewModel
+            {
+                AllProducts = allProducts,
+                ShowActions = User.Identity.IsAuthenticated
+            };
+
+            return View(viewModel);
         }
 
         /// <summary>
@@ -66,7 +72,7 @@ namespace Redweb.BikeShop.Controllers
         [Authorize]
         public ActionResult AddProduct()
         {
-            var viewModel = new AddProductViewModel
+            var viewModel = new ProductViewModel
             {
                 PageHeading = "Add a Product",
                 Colours = _colourRepository.GetAllColours(),
@@ -82,7 +88,7 @@ namespace Redweb.BikeShop.Controllers
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AddProduct(AddProductViewModel viewModel)
+        public ActionResult AddProduct(ProductViewModel viewModel)
         {
 
             if (!ModelState.IsValid)
@@ -118,6 +124,83 @@ namespace Redweb.BikeShop.Controllers
 
             _productRepository.Add(product);
             _productRepository.Complete();
+
+            return RedirectToAction("AllProducts", "Products");
+        }
+
+        [Authorize]
+        public ActionResult EditDetails(int id)
+        {
+            var product = _productRepository.GetSingleProduct(id);
+
+            if (product == null)
+                return HttpNotFound();
+            
+            var viewModel = new ProductViewModel
+            {
+                Id = product.Id,
+                PageHeading = "Edit a Product",
+                Colours = _colourRepository.GetAllColours(),
+                Categories = _categoriesRepository.GetAllCategories(),
+                Models = _modelRepository.GetAllModels(),
+                Sizes = _sizeRepository.GetAllSizes(),
+                Subcategories = _subcategoriesRepository.GetAllSubcategories(),
+                ColourId = product.Colour == null ? 0 : product.Colour.Id,
+                SizeId = product.Size == null ? 0 : product.Size.Id,
+                SubcategoryId = product.Subcategory.Id,
+                CategoryId = product.Category.Id,
+                ModelId = product.Model.Id,
+                ProductName = product.Name,
+                ProductCode = product.Code,
+                Description = product.Description,
+                Price = product.Price.ToString("0.00")
+            };
+
+            return View("ProductForm", viewModel);
+        }
+
+        [Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult UpdateProduct(ProductViewModel viewModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                viewModel.PageHeading = "Edit a Product";
+                viewModel.Colours = _colourRepository.GetAllColours();
+                viewModel.Categories = _categoriesRepository.GetAllCategories();
+                viewModel.Models = _modelRepository.GetAllModels();
+                viewModel.Sizes = _sizeRepository.GetAllSizes();
+                viewModel.Subcategories = _subcategoriesRepository.GetAllSubcategories();
+                return View("ProductForm", viewModel);
+            }
+
+            var newCategory = _categoriesRepository.GetSingleCategory(viewModel.CategoryId);
+            var newSubcategory = _subcategoriesRepository.GetSingleSubcategory(viewModel.SubcategoryId);
+            var newModel = _modelRepository.GetSingleModel(viewModel.ModelId);
+            var newColour = _colourRepository.GetSingleColour(viewModel.GetColourId());
+            var newSize = _sizeRepository.GetSingleSize(viewModel.GetSizeId());
+
+            var existingProduct = _productRepository.GetSingleProduct(viewModel.Id);
+
+            if (existingProduct == null)
+                return HttpNotFound();
+
+            var updatedProduct = new ProductModel
+            {
+                Id = viewModel.Id,
+                Code = viewModel.ProductCode,
+                Name = viewModel.ProductName,
+                Price = viewModel.GetPriceDecimalValue(),
+                Description = viewModel.Description,
+                Category = newCategory,
+                Subcategory = newSubcategory,
+                Model = newModel,
+                Colour = newColour,
+                Size = newSize,
+            };
+
+            _productRepository.UpdateProduct(existingProduct.Id, updatedProduct);
 
             return RedirectToAction("AllProducts", "Products");
         }

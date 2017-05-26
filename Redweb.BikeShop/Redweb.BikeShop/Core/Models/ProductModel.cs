@@ -1,4 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Redweb.BikeShop.Core.ViewModels;
 
 namespace Redweb.BikeShop.Core.Models
 {

@@ -206,10 +206,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\MappingProfile.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\api\ProductController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Core\Models\CategoryModel.cs" />
     <Compile Include="Core\Models\ProductModelModel.cs" />
     <Compile Include="Core\Models\ProductModel.cs" />
@@ -220,7 +223,8 @@
     <Compile Include="Core\Repositories\IProductRepository.cs" />
     <Compile Include="Core\Repositories\ISizeRepository.cs" />
     <Compile Include="Core\Repositories\ISubcategoriesRepository.cs" />
-    <Compile Include="Core\ViewModels\AddProductViewModel.cs" />
+    <Compile Include="Core\ViewModels\AllProductsViewModel.cs" />
+    <Compile Include="Core\ViewModels\ProductViewModel.cs" />
     <Compile Include="Core\Models\ColourModel.cs" />
     <Compile Include="Core\ViewModels\ProductDetailViewModel.cs" />
     <Compile Include="Core\Models\SizeModel.cs" />
@@ -291,6 +295,7 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Scripts\bootbox.min.js" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
@@ -321,6 +326,7 @@
     <Content Include="Views\Products\AllProducts.cshtml" />
     <Content Include="Views\Products\ProductDetails.cshtml" />
     <Content Include="Views\Products\ProductForm.cshtml" />
+    <Content Include="Views\Search\MainSearch.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

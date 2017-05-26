@@ -1,5 +1,5 @@
-using System.Collections.Generic;
 using Redweb.BikeShop.Core.Models;
+using System.Collections.Generic;
 
 namespace Redweb.BikeShop.Core.Repositories
 {
@@ -7,7 +7,10 @@ namespace Redweb.BikeShop.Core.Repositories
     {
         IEnumerable<ProductModel> GetAllProducts();
         ProductModel GetSingleProduct(int productId);
-        void Add(ProductModel gig);
+        void Add(ProductModel product);
+        void UpdateProduct(int existingProductId, ProductModel updatedProduct);
+        void DeleteProduct(int id);
         void Complete();
+        
     }
 }

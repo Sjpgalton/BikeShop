@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace Redweb.BikeShop.Core.ViewModels
 {
-    public class AddProductViewModel
+    public class ProductViewModel
     {
         public int Id { get; set; }
 
@@ -54,10 +54,10 @@ namespace Redweb.BikeShop.Core.ViewModels
                 Expression<Func<ProductsController, ActionResult>> createProduct =
                     (c => c.AddProduct());
 
-                //Expression<Func<ProductsController, ActionResult>> updateProduct =
-                //    (c => c.UpdateProduct(this));
+                Expression<Func<ProductsController, ActionResult>> updateProduct =
+                    (c => c.UpdateProduct(this));
 
-                var action = /*(Id != 0) ? update : */createProduct;
+                var action = (Id != 0) ? updateProduct : createProduct;
                 return (action.Body as MethodCallExpression).Method.Name;
             }
         }

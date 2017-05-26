@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - BikeShop Ltd</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
@@ -30,6 +30,7 @@
                         <li><a href="@Url.Action("AddProduct", "Products")">Add a Product</a></li>
                     </ul>
                 </li>
+                <li>@Html.ActionLink("Search Products", "MainSearch", "Search")</li>
             </ul>
             @Html.Partial("_LoginPartial")
         </div>
@@ -45,6 +46,7 @@
 
 @Scripts.Render("~/bundles/jquery")
 @Scripts.Render("~/bundles/bootstrap")
+@Scripts.Render("~/bundles/bootbox")
 @RenderSection("scripts", required: false)
 </body>
 </html>
