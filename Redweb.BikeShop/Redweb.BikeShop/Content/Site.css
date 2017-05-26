@@ -48,3 +48,23 @@ textarea {
 
 .navbar-brand {
   font-weight: 700; }
+
+span.field-validation-error {
+  color: red;
+  font-weight: bold; }
+
+.searchfilters:after {
+  content: "";
+  display: table;
+  clear: both; }
+
+.sortingwrapper {
+  display: inline-block;
+  width: 50%;
+  text-align: right; }
+  .sortingwrapper select {
+    display: inline-block; }
+
+.searchbar {
+  float: left;
+  width: 50%; }

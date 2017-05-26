@@ -1,5 +1,8 @@
-﻿using Redweb.BikeShop.Core.Repositories;
+﻿using PagedList;
+using Redweb.BikeShop.Core.Repositories;
 using Redweb.BikeShop.Core.ViewModels;
+using System;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace Redweb.BikeShop.Controllers
@@ -13,17 +16,37 @@ namespace Redweb.BikeShop.Controllers
             _productRepository = productRepository;
         }
 
-        public ActionResult MainSearch(string query = null)
+        public ActionResult MainSearch(int? page, string currentFilter, string query = null, SearchSortTypes sortType = SearchSortTypes.Default)
         {
-            var allProducts = _productRepository.GetAllProducts();
+            var allProducts = _productRepository.SearchAllProducts(query, sortType);
 
-            var viewModel = new AllProductsViewModel
+            if (query != null)
+            {
+                page = 1;
+            }
+
+            var pageSize = 40;
+            var pageNumber = (page ?? 1);
+            var numberOfPages = Math.Ceiling((decimal)allProducts.Count() / pageSize);
+            
+
+            var viewModel = new SearchProductsViewModel
             {
                 SearchTerm = query,
-                AllProducts = allProducts
-            };
-
+                AllProducts = allProducts.ToPagedList(pageNumber, pageSize),
+                PageSize = pageSize,
+                PageNumber = pageNumber,
+                NumberOfPages = numberOfPages,
+                SortTypes = Enum.GetValues(typeof(SearchSortTypes)).Cast<SearchSortTypes>()
+        };
+            
             return View(viewModel);
+        }
+
+        [HttpPost]
+        public ActionResult Search(SearchProductsViewModel viewModel)
+        {
+            return RedirectToAction("MainSearch", "Search", new { query = viewModel.SearchTerm, viewModel.SortType });
         }
     }
 }

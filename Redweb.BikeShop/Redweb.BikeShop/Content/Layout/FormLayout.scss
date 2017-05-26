@@ -4,3 +4,26 @@ span.field-validation-error {
 	color: $red;
 	font-weight: bold;
 }
+
+.searchfilters {
+    &:after{
+        content: "";
+            display: table;
+            clear: both;
+    }
+}
+
+.sortingwrapper {
+    display:inline-block;
+    width: 50%;
+    text-align: right;
+
+    select {
+        display: inline-block;
+    }
+}
+
+.searchbar {
+    float: left;
+    width: 50%;
+}
