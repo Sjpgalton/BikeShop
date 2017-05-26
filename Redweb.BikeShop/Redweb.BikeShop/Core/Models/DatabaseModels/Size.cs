@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Redweb.BikeShop.Core.Models
+namespace Redweb.BikeShop.Core.Models.DatabaseModels
 {
-    public class Subcategory
+    public class Size
     {
         public int Id { get; set; }
 

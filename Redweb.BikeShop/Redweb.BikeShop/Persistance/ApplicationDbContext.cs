@@ -1,7 +1,7 @@
 ﻿using System.Data.Entity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Redweb.BikeShop.Core;
-using Redweb.BikeShop.Core.Models;
+using Redweb.BikeShop.Core.Models.DatabaseModels;
 
 namespace Redweb.BikeShop.Persistance
 {

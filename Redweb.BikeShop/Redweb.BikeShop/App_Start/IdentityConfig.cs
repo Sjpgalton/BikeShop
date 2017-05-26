@@ -3,10 +3,10 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
-using Redweb.BikeShop.Core.Models;
 using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Redweb.BikeShop.Core.Models.DatabaseModels;
 using Redweb.BikeShop.Persistance;
 
 namespace Redweb.BikeShop
