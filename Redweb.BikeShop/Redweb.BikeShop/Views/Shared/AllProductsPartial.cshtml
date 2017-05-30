@@ -1,0 +1,29 @@
+﻿@model Redweb.BikeShop.Core.ViewModels.AllProductsViewModel
+@foreach (var product in Model.AllProducts.ToList())
+{
+    <tr>
+    <th>@product.Code</th>
+    <th>
+        <a href="@Url.Action("ProductDetails", "Products", new { id = product.Id })">
+            @product.Name
+        </a>
+    </th>
+    <th>@product.Category.Name</th>
+    <th>@product.Subcategory.Name</th>
+    <th>@product.Model.Name</th>
+    <th>£@product.Price</th>
+    @if (Model.ShowActions)
+     {
+         <th>
+             <a href="@Url.Action("EditDetails", "Products", new {id = product.Id})">
+                 Edit Product
+             </a>
+         </th>
+         <th>
+             <a href="#" class="js-delete-product" data-product-id="@product.Id">
+                 Delete Product
+             </a>
+         </th>
+     }
+     </tr>
+}

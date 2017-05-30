@@ -46,7 +46,7 @@
             <tr>
                 <th>@product.Code</th>
                 <th>
-                    <a href="@Url.Action("ProductDetails", "Products", new {id = product.Id})">
+                    <a href="@Url.Action("SearchProductDetails", "Products", new {id = product.Id})" >
                         @product.Name
                     </a>
                 </th>

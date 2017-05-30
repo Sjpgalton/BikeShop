@@ -204,5 +204,43 @@ namespace Redweb.BikeShop.Controllers
 
             return RedirectToAction("AllProducts", "Products");
         }
+
+        public ActionResult SearchProductDetails(int id)
+        {
+            var productDetails = _productRepository.GetSingleProduct(id);
+
+            if (productDetails == null)
+                return HttpNotFound();
+
+            var viewModel = new ProductDetailViewModel
+            {
+                ProductDetail = productDetails,
+                ColourText = productDetails.Colour == null ? "N/A" : productDetails.Colour.Name,
+                SizeText = productDetails.Size == null ? "N/A" : productDetails.Size.Name,
+                IsFromSearch = true
+            };
+
+            return View("ProductDetails", viewModel);
+        }
+
+        public ActionResult AllProductsSearch(string query = null)
+        {
+            if (!string.IsNullOrWhiteSpace(query))
+            {
+                query = query.ToLower();
+            }
+
+            var allProducts = _productRepository.SearchAllProducts(query);
+
+
+            var viewModel = new AllProductsViewModel
+            {
+                SearchTerm = query,
+                AllProducts = allProducts,
+                ShowActions = User.Identity.IsAuthenticated
+            };
+
+            return PartialView("AllProductsPartial", viewModel);
+        }
     }
 }

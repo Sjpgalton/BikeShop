@@ -54,11 +54,11 @@ namespace Redweb.BikeShop.Persistance.Repositories
             {
                 allProducts = allProducts
                     .Where(product =>
-                        product.Category.Name.Contains(query) ||
-                        product.Subcategory.Name.Contains(query) ||
-                        product.Model.Name.Contains(query) ||
-                        product.Name.Contains(query) ||
-                        product.Code.Contains(query))
+                        product.Category.Name.ToLower().Contains(query) ||
+                        product.Subcategory.Name.ToLower().Contains(query) ||
+                        product.Model.Name.ToLower().Contains(query) ||
+                        product.Name.ToLower().Contains(query) ||
+                        product.Code.ToLower().Contains(query))
                         .ToList();
             }
 

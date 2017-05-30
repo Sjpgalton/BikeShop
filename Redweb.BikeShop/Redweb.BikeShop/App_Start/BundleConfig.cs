@@ -7,7 +7,9 @@ namespace Redweb.BikeShop
         public static void RegisterBundles(BundleCollection bundleCollection)
         {
             bundleCollection.Add(new ScriptBundle("~/bundles/jquery").Include(
-                                "~/Scripts/jquery-{version}.js"));
+                                "~/Scripts/jquery-{version}.js",
+                                "~/Scripts/jquery.unobtrusive-ajax.min.js",
+                                "~/Scripts/jquery.unobtrusive-ajax.js"));
 
             bundleCollection.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                                 "~/Scripts/jquery.validate*"));
