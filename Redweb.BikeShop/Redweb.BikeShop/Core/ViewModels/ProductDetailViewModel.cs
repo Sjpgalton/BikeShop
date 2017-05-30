@@ -7,5 +7,6 @@ namespace Redweb.BikeShop.Core.ViewModels
         public ProductModel ProductDetail { get; set; }
         public string ColourText { get; set; }
         public string SizeText { get; set; }
+        public bool IsFromSearch { get; set; }
     }
 }

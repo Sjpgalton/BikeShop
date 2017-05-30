@@ -18,12 +18,13 @@ namespace Redweb.BikeShop.Controllers
 
         public ActionResult MainSearch(int? page, string currentFilter, string query = null, SearchSortTypes sortType = SearchSortTypes.Default)
         {
-            var allProducts = _productRepository.SearchAllProducts(query, sortType);
-
-            if (query != null)
+            if (!string.IsNullOrWhiteSpace(query))
             {
+                query = query.ToLower();
                 page = 1;
             }
+
+            var allProducts = _productRepository.SearchAllProducts(query, sortType);
 
             var pageSize = 40;
             var pageNumber = (page ?? 1);
@@ -38,7 +39,7 @@ namespace Redweb.BikeShop.Controllers
                 PageNumber = pageNumber,
                 NumberOfPages = numberOfPages,
                 SortTypes = Enum.GetValues(typeof(SearchSortTypes)).Cast<SearchSortTypes>()
-        };
+            };
             
             return View(viewModel);
         }

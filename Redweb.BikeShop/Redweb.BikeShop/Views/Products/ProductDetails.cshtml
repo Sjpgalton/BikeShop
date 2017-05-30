@@ -9,11 +9,22 @@
             Home
         </a>
     </li>
-    <li>
-        <a href="@Url.Action("AllProducts", "Products")">
-            All Products
-        </a>
-    </li>
+    @if (Model.IsFromSearch)
+    {
+        <li>
+            <a href="@Url.Action("MainSearch", "Search")">
+                Main Search
+            </a>
+        </li>
+    }
+    else
+    {
+        <li>
+            <a href="@Url.Action("AllProducts", "Products")">
+                All Products
+            </a>
+        </li>
+    }
     <li class="active">@Model.ProductDetail.Name</li>
 </ul>
 <ul class="productDetails voffset3">
