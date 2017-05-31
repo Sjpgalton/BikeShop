@@ -214,6 +214,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\MappingProfile.cs" />
+    <Compile Include="App_Start\SeoFriendlyRoute.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\api\ProductController.cs" />
@@ -238,6 +239,10 @@
     <Compile Include="Core\Models\SizeModel.cs" />
     <Compile Include="Core\ViewModels\SearchSortTypes.cs" />
     <Compile Include="Core\ViewModels\SearchProductsViewModel.cs" />
+    <Compile Include="Migrations\201705301056469_AddImageUrlsToProducts.cs" />
+    <Compile Include="Migrations\201705301056469_AddImageUrlsToProducts.Designer.cs">
+      <DependentUpon>201705301056469_AddImageUrlsToProducts.cs</DependentUpon>
+    </Compile>
     <Compile Include="Persistance\ApplicationDbContext.cs" />
     <Compile Include="Core\Models\DatabaseModels\ApplicationUser.cs" />
     <Compile Include="Core\Models\DatabaseModels\Category.cs" />
@@ -282,6 +287,7 @@
     <Content Include="Content\bootstrap-paper.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\Logo.png" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\site.css" />
     <Content Include="favicon.ico" />
@@ -379,6 +385,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201705241352417_InitialSetup.resx">
       <DependentUpon>201705241352417_InitialSetup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705301056469_AddImageUrlsToProducts.resx">
+      <DependentUpon>201705301056469_AddImageUrlsToProducts.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -31,5 +31,7 @@ namespace Redweb.BikeShop.Core.Models.DatabaseModels
 
         [Required]
         public string Description { get; set; }
+
+        public string ImageUrl { get; set; }
     }
 }

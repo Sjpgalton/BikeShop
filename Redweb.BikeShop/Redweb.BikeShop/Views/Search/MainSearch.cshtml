@@ -18,8 +18,8 @@
     {
         <div class="searchfilters">
             <div id="searchProducts" class="searchbar">
-                @Html.TextBoxFor(m => m.SearchTerm, new { style = "width:2000px;", placeholder = "Search for products" })
-                <button type="submit" class="btn btn-primary btn-lg">Search</button>
+                @Html.TextBoxFor(m => m.SearchTerm, new { @class = "searchbar", placeholder = "Search for products" })
+                <button type="submit" class="btn btn-primary btn-sm hoffset1">Search</button>
             </div>
             <div class="sortingwrapper">
                 @Html.Label("Sort By")
@@ -30,6 +30,7 @@
     }
     <table class="table table-striped table-hover voffset4">
         <tr>
+            <th>Image</th>
             <th>Product Code</th>
             <th>Product Name</th>
             <th>Category</th>
@@ -41,12 +42,23 @@
                 <th colspan="2">Actions</th>
             }
         </tr>
+        @if (!Model.AllProducts.Any())
+        {
+            <tr>
+                <th colspan="9">
+                    <div class="text-center voffset3">No Items Found</div>
+                </th>
+            </tr>
+        }
         @foreach (var product in Model.AllProducts)
         {
             <tr>
+                <th>
+                    <img src="@product.DetailImageUrl" alt="@product.Name Image" class="centerImage" , width="50">
+                </th>
                 <th>@product.Code</th>
                 <th>
-                    <a href="@Url.Action("SearchProductDetails", "Products", new {id = product.Id})" >
+                    <a href="@Url.Action("SearchProductDetails", "Products", new {id = product.GenerateSlug()})">
                         @product.Name
                     </a>
                 </th>
