@@ -16,6 +16,9 @@
 .voffset6 {
   margin-top: 80px; }
 
+.hoffset1 {
+  margin-left: 10px; }
+
 body {
   padding-top: 50px;
   padding-bottom: 20px; }
@@ -26,7 +29,8 @@ body {
   padding-right: 5px; }
   .body-content .productDetails .centerImage {
     display: block;
-    margin: 0 auto; }
+    margin: 0 auto;
+    margin-top: 40px; }
 
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
@@ -39,6 +43,29 @@ input,
 select,
 textarea {
   max-width: 280px; }
+
+.searchbar:focus {
+  outline: none;
+  width: 2000px; }
+
+.span-logo {
+  margin-top: -100px;
+  display: inline-block;
+  vertical-align: central;
+  height: 50px;
+  width: 60px;
+  margin-top: 8px; }
+
+div.main_logo {
+  padding: 0px;
+  float: left; }
+
+#nav div a.logo_li {
+  opacity: 1; }
+
+.span-logo img {
+  width: 100%;
+  height: auto; }
 
 .navbar-inverse {
   background-color: #007cc2;

@@ -12,30 +12,33 @@ namespace Redweb.BikeShop.Core.ViewModels
     {
         public int Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Please enter a Product Code")]
         public string ProductCode { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Please enter a Product Name")]
         public string ProductName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Please select a Category")]
         public int CategoryId { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Please select a Subcategory")]
         public int SubcategoryId { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Please select a Model")]
         public int ModelId { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Please enter a valid price (e.g. 199.99)")]
         public string Price { get; set; }
 
         public int? ColourId { get; set; }
         
         public int? SizeId { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Please enter a description")]
         public string Description { get; set; }
+
+        [Url(ErrorMessage = "Please enter a valid URL")]
+        public string ImageUrl { get; set; }
 
 
         // To store all the values form the database

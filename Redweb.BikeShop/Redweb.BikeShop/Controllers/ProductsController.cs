@@ -153,7 +153,8 @@ namespace Redweb.BikeShop.Controllers
                 ProductName = product.Name,
                 ProductCode = product.Code,
                 Description = product.Description,
-                Price = product.Price.ToString("0.00")
+                Price = product.Price.ToString("0.00"),
+                ImageUrl = product.ImageUrl
             };
 
             return View("ProductForm", viewModel);
@@ -198,6 +199,7 @@ namespace Redweb.BikeShop.Controllers
                 Model = newModel,
                 Colour = newColour,
                 Size = newSize,
+                ImageUrl = viewModel.ImageUrl
             };
 
             _productRepository.UpdateProduct(existingProduct.Id, updatedProduct);

@@ -1,29 +1,39 @@
 ﻿@model Redweb.BikeShop.Core.ViewModels.AllProductsViewModel
+@if (!Model.AllProducts.Any())
+{
+    <th colspan="9">
+        <div class="text-center voffset3">No Items Found</div>
+    </th>
+}
 @foreach (var product in Model.AllProducts.ToList())
 {
     <tr>
-    <th>@product.Code</th>
-    <th>
-        <a href="@Url.Action("ProductDetails", "Products", new { id = product.Id })">
-            @product.Name
-        </a>
-    </th>
-    <th>@product.Category.Name</th>
-    <th>@product.Subcategory.Name</th>
-    <th>@product.Model.Name</th>
-    <th>£@product.Price</th>
-    @if (Model.ShowActions)
-     {
-         <th>
-             <a href="@Url.Action("EditDetails", "Products", new {id = product.Id})">
-                 Edit Product
-             </a>
-         </th>
-         <th>
-             <a href="#" class="js-delete-product" data-product-id="@product.Id">
-                 Delete Product
-             </a>
-         </th>
-     }
-     </tr>
+
+        <th>
+            <img src="@product.DetailImageUrl" alt="@product.Name Image" class="centerImage", width="50">
+        </th>
+        <th>@product.Code</th>
+        <th>
+            <a href="@Url.Action("ProductDetails", "Products", new {id = product.GenerateSlug()})">
+                @product.Name
+            </a>
+        </th>
+        <th>@product.Category.Name</th>
+        <th>@product.Subcategory.Name</th>
+        <th>@product.Model.Name</th>
+        <th>£@product.Price</th>
+        @if (Model.ShowActions)
+        {
+            <th>
+                <a href="@Url.Action("EditDetails", "Products", new {id = product.Id})">
+                    Edit Product
+                </a>
+            </th>
+            <th>
+                <a href="#" class="js-delete-product" data-product-id="@product.Id">
+                    Delete Product
+                </a>
+            </th>
+        }
+    </tr>
 }
